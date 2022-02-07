@@ -39,7 +39,7 @@ resource "aws_ram_resource_association" "tgw_ram_association" {
   count = var.create_tgw && var.share_tgw ? 1 : 0
 
   resource_arn       = aws_ec2_transit_gateway.tgw[0].arn
-  resource_share_arn = aws_ram_resource_share.tgw_ram[0].id
+  resource_share_arn = aws_ram_resource_share.tgw_ram[0].arn
 }
 resource "aws_ram_resource_share_accepter" "this" {
   count = !var.create_tgw && var.share_tgw ? 1 : 0
