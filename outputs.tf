@@ -4,7 +4,7 @@ output "ec2_transit_gateway_arn" {
 }
 output "aws_ec2_transit_gateway_route_table" {
   description = "Identifier of the default association route table"
-  value       = element(concat(aws_ec2_transit_gateway_route_table.tgw_route_table.[*].arn, [""]), 0)
+  value       = element(concat(aws_ec2_transit_gateway_route_table.tgw_route_table.*.arn, [""]), 0)
 }
 output "ec2_transit_gateway_id" {
   description = "EC2 Transit Gateway identifier"
