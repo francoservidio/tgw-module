@@ -1,15 +1,3 @@
-provider "aws" {
-  alias = "account-ipsy-us-east-1"
-  assume_role {
-    role_arn = "arn:aws:iam::<<account-number>>:role/terraform-admin-trusting"
-  }
-  ignore_tags {
-    key_prefixes = ["kubernetes.io/"]
-  }
-  region  = "us-east-1"
-  profile = "lockdown"
-}
-#
 resource "aws_ec2_transit_gateway" "tgw" {
   count = var.create_tgw ? 1 : 0
 
