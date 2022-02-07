@@ -15,7 +15,7 @@ resource "aws_ec2_transit_gateway" "tgw" {
 
 # Creates a Transit gateway route table and associates with the Transit Gateway
 resource "aws_ec2_transit_gateway_route_table" "tgw_route_table" {
-  for_each = var.tgw_tags_name_rt
+  for_each = toset(var.tgw_tags_name_rt)
   transit_gateway_id = aws_ec2_transit_gateway.tgw[0].id
 
   tags = {
