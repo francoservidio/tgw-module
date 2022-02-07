@@ -50,6 +50,6 @@ resource "aws_ram_resource_share_accepter" "this" {
 resource "aws_ram_principal_association" "this" {
   for_each = toset(var.ram_principals)
   principal = each.key
-  resource_share_arn = aws_ram_resource_share.tgw_ram.arn
+  resource_share_arn = aws_ram_resource_share.tgw_ram[0].arn
 }
 
