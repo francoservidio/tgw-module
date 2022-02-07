@@ -40,11 +40,16 @@ resource "aws_ram_resource_association" "tgw_ram_association" {
 
   resource_arn       = aws_ec2_transit_gateway.tgw[0].arn
   resource_share_arn = aws_ram_resource_share.tgw_ram[0].arn
+
 }
 resource "aws_ram_resource_share_accepter" "this" {
   count = !var.create_tgw && var.share_tgw ? 1 : 0
 
   share_arn = var.ram_resource_share_arn
 }
-
+resource "aws_ram_principal_association" "this" {
+  for_each = toset(var.ram_principals)
+  principal = each.key
+  resource_share_arn = aws_ram_resource_share.tgw_ram.arn
+}
 

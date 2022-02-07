@@ -60,3 +60,7 @@ variable "ram_resource_share_arn" {
   type        = string
   default     = ""
 }
+variable "ram_principals" {
+  description = "The principal to associate with the resource share"
+  default     = []
+}
