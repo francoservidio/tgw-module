@@ -64,7 +64,7 @@ variable "ram_principals" {
   description = "The principal to associate with the resource share"
   default     = []
 }
-variable "ram_principals_share_accepter_profile" {
+variable "ram_principals_share_profile" {
   description = "The principal profile to assume role and accept invitation"
   default     = []
 }
