@@ -43,8 +43,8 @@ resource "aws_ram_resource_association" "tgw_ram_association" {
 
 }
 resource "aws_ram_resource_share_accepter" "this" {
-  count = !var.create_tgw && var.share_tgw ? 1 : 0
-
+  for_each = toset(var.ram_principals)
+  provider = each.key
   share_arn = var.ram_resource_share_arn
 }
 resource "aws_ram_principal_association" "this" {
