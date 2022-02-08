@@ -1,3 +1,13 @@
+provider "aws" {
+  alias                   = "account-${var.ram_principals}"
+  region                  = "us-east-1"
+  shared_credentials_file = "/Users/franco/.aws/credentials"
+  profile                 = "aws-personal"
+  assume_role {
+    role_arn     = "arn:aws:iam::${var.ram_principals}:role/admin"
+    session_name = "account-1"
+  }
+}
 resource "aws_ec2_transit_gateway" "tgw" {
   count = var.create_tgw ? 1 : 0
 
@@ -48,8 +58,8 @@ resource "aws_ram_principal_association" "this" {
   resource_share_arn = aws_ram_resource_share.tgw_ram[0].arn
 }
 resource "aws_ram_resource_share_accepter" "this" {
-  for_each = toset(var.ram_principals_share_profile)
-  provider = "aws.${each.key}"
+  for_each = toset(var.ram_principals)
+  provider = "aws.account-${each.key}"
   share_arn = aws_ram_principal_association.this[*].resource_share_arn
 }
 
