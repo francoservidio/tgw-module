@@ -49,7 +49,7 @@ resource "aws_ram_principal_association" "this" {
 }
 resource "aws_ram_resource_share_accepter" "this" {
   for_each = toset(var.ram_principals_share_profile)
-  provider = each.key
+  provider = aws.each.key
   share_arn = aws_ram_principal_association.this[*].resource_share_arn
 }
 
