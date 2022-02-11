@@ -12,7 +12,7 @@ variable "tgw_amazon_side_asn" {
 }
 variable "tgw_auto_accept_shared_attachments" {
   description = "Whether resource requests are automatically accepted"
-  default     = "disable"
+  default     = "enable"
 }
 variable "tgw_default_route_table_association" {
   description = "Whether resource attachments are automatically associated with the default association route table"
@@ -67,4 +67,9 @@ variable "ram_principals" {
 variable "ram_principals_share_profile" {
   description = "The principal profile to assume role and accept invitation"
   default     = []
+}
+
+variable "names" {
+  type        = string
+  default     = "account-"
 }

@@ -15,3 +15,8 @@ output "ram_resource_share_id" {
   description = "The Amazon Resource Name (ARN) of the resource share"
   value       = element(concat(aws_ram_resource_share.tgw_ram.*.id, [""]), 0)
 }
+#aws_ram_principal_association
+output "aws_ram_principal_association_arn" {
+  description = "The Amazon Resource Name (ARN) of the Resource Share and the principal, separated by a comma"
+  value       = aws_ram_principal_association.this
+}
